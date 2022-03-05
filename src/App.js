@@ -20,28 +20,27 @@ function App() {
   const complete = rows.complete().sortDate().addNr();
   const rowsComplete = complete.rows;
 
-  const csvArrays=rowsComplete.map(r=>new Row(r).csv())
-  const first = csvArrays[0];
-  const descr=first?.descr;
-  const header = first?.header.map(h => descr + '_' + h).join('~');
-  const dataArray = csvArrays.map(a => a.values.join('~'));
-
-  const csvString = header + "\n" + dataArray.join("\n");
-  console.log(csvString);
-  const downloadTxtFile = () => {
+  const csv=rowsComplete.map(r=>new Row(r).csv())
+  console.log(csv);
+  const downloadFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([csvString], {type: 'text/csv;charset=utf-8'});
+    const file = new Blob([JSON.stringify(csv)], {type: 'application/json; charset=UTF-8'});
     element.href = URL.createObjectURL(file);
-    element.download = "auswertung.csv";
+    element.download = "auswertung.json";
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   }
   return (
     <div className="App">
-      <button onClick={downloadTxtFile}>Download data</button>
+      <button onClick={downloadFile}>Download data</button>
 
     </div>
   );
+/*  return (
+    <div className="App">
+
+    </div>
+  );*/
 }
 
 export default App;

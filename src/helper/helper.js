@@ -1,6 +1,5 @@
 export const ageInSeconds = dateString => (Date.now() - (new Date(dateString)).valueOf())/1000;
 
-
 export class frameFilter {
   static id = (id) => (frame => frame.id === id);
 }
@@ -12,3 +11,5 @@ export function count(arr) {
 export function transpose(data) {
   return data[0].map((col, i) => data.map(row => row[i]));
 }
+
+export const  average = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
