@@ -32,7 +32,7 @@ function App() {
   }
   return (
     <div className="App">
-      <button onClick={downloadFile}>Download data</button>
+      <button onClick={downloadFile}>Download EBL</button>
 
     </div>
   );
